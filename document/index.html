@@ -7,6 +7,28 @@
     <meta charset="UTF-8">
     <title>Zyy Maple Leaf OS使用协议</title>
     <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background: linear-gradient(to bottom, #FFFFE0);
+        background-attachment: fixed;
+        min-height: 100vh;
+        font-family: 'Noto Sans SC', sans-serif;
+        color: #333;
+        line-height: 1.8;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .overlay {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        flex: 1;
+    }
+
         #top-left-button {
             position: fixed;
             top: 10px;
@@ -23,6 +45,45 @@
         #top-left-button:hover {
             background-color: #0056b3;
         }
+
+    footer {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 40px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: auto;
+    }
+        .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+        .footer-column h3 {
+        color: #fff;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #ff9900;
+        padding-bottom: 5px;
+        display: inline-block;
+    }
+        .footer-column {
+        flex: 1;
+        min-width: 200px;
+    }
+
+        .copyright {
+        margin-top: 40px;
+        text-align: center;
+        color: #666;
+        font-size: 0.9em;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
     </style>
 </head>
 <body>
@@ -32,7 +93,6 @@
             window.history.back();
         }
     </script>
-
 <br /><br />
 <h2><strong>《Zyy Maple Leaf OS使用协议》 </strong></h2>
 <br />
@@ -80,6 +140,19 @@
 我们保留随时修改本协议的权利。我们可能会通过在相关平台发布公告或在作品内提示的方式通知您协议的变更。如果您在协议修改后继续使用本作品，即视为您已接受修改后的协议。如果您不同意修改后的协议，请停止使用本作品。
 <br /><br /><br />
 <strong>最后更新日期：2026年3月11日 19：44</strong>
+<footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Zyy Maple Leaf OS</h3>
+                <p>一个真正可独立运行的 Scratch 操作系统，功能强大，UI精美</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <a href="https://icp.gov.moe/?keyword=20263044" target="_blank">萌ICP备20263044号</a>  <a href="https://icp.gov.moe/?keyword=20260885" target="_blank">萌ICP备20260885号</a>
+            <br />
+            <a href="https://space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a> | <a href="https://io.hb.cn" target="_blank" style="text-decoration: none;color: #666;">Yund 技术支持</a> | 基于 Scratch 项目 | 开源：暂不开源
+        </div>
+</footer>
 </body>
 
 </html>
