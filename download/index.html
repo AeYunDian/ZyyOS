@@ -1,226 +1,437 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.png" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>下载Zyy Maple Leaf OS</title>
-  <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.png" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载 Zyy Maple Leaf OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-main: #78350F;
+            --text-light: #92400E;
+            --accent-color: #D97706;
+            --card-shadow: 0 15px 35px rgba(120, 53, 15, 0.1);
+            --undz-accent: #6a11cb;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-    body {
-      background: #FFFACD;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .page-title {
-      text-align: center; /* 文本居中 */
-      width: 100%; /* 占满宽度 */
-      margin: 20px 0; /* 上下间距 */
-      color: #333; /* 字体颜色 */
-      font-weight: bold; /* 加粗 */
-    }
+        body {
+            background: var(--primary-gradient);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-main);
+        }
 
-    .download-list {
-      list-style-type: none;
-      padding: 0;
-      width: 80%; /* 限制宽度，防止按钮过宽 */
-      margin: 0 auto; /* 居中 */
-    }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .download-list li {
-      background: linear-gradient(to bottom, #FFD699, #FFC066, #FFD699);
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 10px;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .runtime-bar {
+            text-align: center;
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            margin: 10px 0 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .runtime-text {
+            color: #92400E;
+            font-size: 0.85em;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+        .runtime-numbers {
+            color: var(--undz-accent);
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
 
-    .actions {
-      display: flex;
-      gap: 10px;
-    }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
 
-    .btn-base {
-      padding: 8px 12px;
-      background: #FFA500;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 14px;
-      display: inline-block;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
+        .back-button:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.3);
+        }
 
-    .btn-base:hover {
-      background-color: #FFD700;
-    }
+        .page-title {
+            text-align: center;
+            width: 100%;
+            margin: 60px 0 5px 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.7);
+        }
 
-    .btn-download {
-      color: #007bff;
-    }
+        .page-subtitle {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10px;
+            color: var(--text-light);
+            font-size: 1.1em;
+            font-weight: 500;
+        }
 
-    .btn-download:hover {
-      color: #0056b3;
-      border-color: #0056b3;
-    }
+        .download-section {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
 
-    .btn-disabled {
-      color: #666 !important;
-      border-color: #ddd !important;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .btn-password {
-      color: #333;
-    }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
 
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
+        .download-list {
+            list-style-type: none;
+        }
 
-    .modal-content {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      position: relative;
-    }
+        .download-list li {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
 
-    .modal-content h3 {
-      margin-top: 0;
-      color: #333;
-    }
+        .download-list li:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(120, 53, 15, 0.2);
+            border-color: var(--undz-accent);
+            z-index: 1;
+        }
 
-    .modal-content p {
-      color: #555;
-      line-height: 1.6;
-    }
+        .version-info {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--text-main);
+        }
 
-    .modal-content a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
 
-    .modal-content a:hover {
-      text-decoration: underline;
-    }
+        .btn-base {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            cursor: pointer;
+            min-width: 80px;
+            text-align: center;
+        }
 
-    .modal-footer {
-      text-align: center;
-      margin-top: 20px;
-    }
+        .btn-download {
+            background: linear-gradient(to bottom, #FDE68A, #F59E0B);
+            color: #78350F;
+            border-color: #F59E0B;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+        }
 
-  </style>
+        .btn-download:hover {
+            background: linear-gradient(to bottom, #FDBA74, #D97706);
+            color: white;
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-password {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-light);
+            border: 1px solid #F59E0B;
+        }
+
+        .btn-password:hover {
+            background: white;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(120, 53, 15, 0.15);
+            position: relative;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.5em;
+        }
+
+        .modal-content p {
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .modal-content a {
+            color: #B45309;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .modal-content a:hover {
+            text-decoration: underline;
+            color: #78350F;
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .page-title {
+                font-size: 2em;
+            }
+            .actions {
+                flex-direction: column;
+            }
+            .btn-base {
+                width: 100%;
+            }
+            .download-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .version-info {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <a href="javascript:window.history.back()" class="back-button" style="position: relative; top: 20px; left: 20px; background: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">返回</a>
-
-  <h1 class="page-title" ><img src="/images/pure_experience.png" alt="ZyyOS图标" width="40" height="40">下载 Zyy Maple Leaf OS</h1>
-  <h4 class="page-title" ><img src="/images/windows.png" alt="Windows" width="20" height="20">Windows端-推荐</h4>
-
-  <ul class="download-list">
-    <li>
-      <span>v1.0正式版 26N14（最新）</span>
-      <div class="actions">
-        <a href="https://pan.baidu.com/s/1XRdDhNx9Und84P0JdvvhbA?pwd=CV14" class="btn-base btn-download">下载</a>
-        <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
-      </div>
-    </li>
-    <li>
-    <span>v1.0正式版 26N13</span>
-      <div class="actions">
-        <a href="https://pan.baidu.com/s/1l9HeeAX5fZUTqFLwgleS4Q?pwd=CV13" class="btn-base btn-download">下载</a>
-        <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
-      </div>
-    </li>
-  </ul>
-
-  <div id="passwordModal" class="modal-overlay">
-    <div class="modal-content">
-      <h3>获取安装密码</h3>
-      <p>
-        这个安装程序有安装密码，请给
-        <a href="https://www.bilibili.com/video/BV1BwZLBJETL/" target="_blank" rel="noopener">这个哔哩哔哩视频</a>
-        三连，然后
-        <a href="https://space.bilibili.com/1056203124" target="_blank" rel="noopener">关注并私信作者</a>
-        获取安装密码。
-      </p>
-      <div class="modal-footer">
-        <a href="#" class="btn-base btn-download" onclick="closeModal(); return false;">确认</a>
-      </div>
+    <a href="javascript:window.history.back()" class="back-button">← 返回</a>
+    <h1 class="page-title">
+        <img src="/images/pure_experience.png" alt="ZyyOS图标" width="48" height="48">
+        下载 Zyy Maple Leaf OS
+    </h1>
+    <p class="page-subtitle">选择适合您设备的版本进行安装</p>
+    <div class="download-section">
+        <div class="section-header">
+            <img src="/images/windows.png" alt="Windows" width="24" height="24">
+            <h2>Windows 端 - 推荐</h2>
+        </div>
+        <ul class="download-list">
+            <li>
+                <span class="version-info">v1.0 正式版 26N14（最新）</span>
+                <div class="actions">
+                    <a href="https://pan.baidu.com/s/1XRdDhNx9Und84P0JdvvhbA?pwd=CV14" class="btn-base btn-download">下载</a>
+                    <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
+                </div>
+            </li>
+            <li>
+                <span class="version-info">v1.0 正式版 26N13</span>
+                <div class="actions">
+                    <a href="https://pan.baidu.com/s/1l9HeeAX5fZUTqFLwgleS4Q?pwd=CV13" class="btn-base btn-download">下载</a>
+                    <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
+                </div>
+            </li>
+        </ul>
     </div>
-  </div>
-  <h4 class="page-title" ><img src="/images/mac_os.png" alt="MacOS" width="20" height="20">MacOS端</h4>
-  <ul class="download-list">
-    <li>
-      <span>暂无开放下载链接</span>
-    </li>
-  </ul>
-  <h4 class="page-title" ><img src="/images/linux.png" alt="Linux" width="20" height="20">Linux端</h4>
-  <ul class="download-list">
-    <li>
-      <span>暂无开放下载链接</span>
-    </li>
-  </ul>
-  <h4 class="page-title" ><img src="/images/html.png" alt="HTML" width="20" height="20">HTML-适用于任何操作系统</h4>
-  <ul class="download-list">
-    <li>
-      <span>v1.0正式版 26N14（最新）</span>
-      <div class="actions">
-        <a href="https://pan.baidu.com/s/1oEkwU3JOG3MhlzAWFOvfwg?pwd=CV14" class="btn-base btn-download">下载</a>
-        <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
-      </div>
-    </li>
-  </ul>
-  <h4 class="page-title" ><img src="/images/VMware_iso.png" alt="HTML" width="20" height="20">VMware-iso镜像文件，可直接在硬件上运行</h4>
-  <ul class="download-list">
-    <li>
-      <span>暂无开放下载链接</span>
-    </li>
-  </ul>
-  <script>
-    var modal = document.getElementById("passwordModal");
+    <div class="download-section">
+        <div class="section-header">
+            <img src="/images/mac_os.png" alt="MacOS" width="24" height="24">
+            <h2>MacOS 端</h2>
+        </div>
+        <ul class="download-list">
+            <li>
+                <span class="version-info">暂无开放下载链接</span>
+                <div class="actions">
+                    <button class="btn-base btn-disabled" disabled>不可用</button>
+                    <button class="btn-base btn-disabled" disabled>不可用</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="download-section">
+        <div class="section-header">
+            <img src="/images/linux.png" alt="Linux" width="24" height="24">
+            <h2>Linux 端</h2>
+        </div>
+        <ul class="download-list">
+            <li>
+                <span class="version-info">暂无开放下载链接</span>
+                <div class="actions">
+                    <button class="btn-base btn-disabled" disabled>不可用</button>
+                    <button class="btn-base btn-disabled" disabled>不可用</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="download-section">
+        <div class="section-header">
+            <img src="/images/html.png" alt="HTML" width="24" height="24">
+            <h2>HTML - 适用于任何操作系统</h2>
+        </div>
+        <ul class="download-list">
+            <li>
+                <span class="version-info">v1.0 正式版 26N14（最新）</span>
+                <div class="actions">
+                    <a href="https://pan.baidu.com/s/1oEkwU3JOG3MhlzAWFOvfwg?pwd=CV14" class="btn-base btn-download">下载</a>
+                    <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="download-section">
+        <div class="section-header">
+            <img src="/images/VMware_iso.png" alt="VMware" width="24" height="24">
+            <h2>VMware - iso 镜像文件</h2>
+        </div>
+        <ul class="download-list">
+            <li>
+                <span class="version-info">暂无开放下载链接</span>
+                <div class="actions">
+                    <button class="btn-base btn-disabled" disabled>不可用</button>
+                    <button class="btn-base btn-disabled" disabled>不可用</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="runtime-bar">
+        <div class="runtime-text">距离建站日期2026-02-10 14:00:00，网站已稳定运行</div>
+        <div id="runtime" class="runtime-numbers">0 天 0 时 0 分 0 秒</div>
+    </div>
+    <div id="passwordModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>🔒 获取安装密码</h3>
+            <p>
+                这个安装程序有安装密码，请给 <a href="https://www.bilibili.com/video/BV1BwZLBJETL/" target="_blank" rel="noopener">这个哔哩哔哩视频</a> 三连，然后 <a href="https://space.bilibili.com/1056203124" target="_blank" rel="noopener">关注并私信作者</a> 获取安装密码。
+            </p>
+            <div class="modal-footer">
+                <a href="#" class="btn-base btn-download" onclick="closeModal(); return false;">确认并关闭</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const startDate = new Date("2026-02-10 14:00:00");
 
-    function openModal() {
-      modal.style.display = "flex";
-    }
+        function updateRuntime() {
+            const now = new Date();
+            const diff = now - startDate;
 
-    function closeModal() {
-      modal.style.display = "none";
-    }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
-  </script>
+            document.getElementById("runtime").innerText =
+                `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
+        }
+
+        setInterval(updateRuntime, 1000);
+        updateRuntime();
+
+        var modal = document.getElementById("passwordModal");
+        function openModal() {
+            modal.style.display = "flex";
+        }
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
