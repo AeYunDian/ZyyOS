@@ -5,56 +5,146 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta charset="UTF-8">
-    <title>关于-Zyy Maple Leaf OS</title>
+    <title>关于 - Zyy Maple Leaf OS</title>
     <style>
+        :root {
+            --primary-gradient: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-main: #78350F;
+            --text-light: #92400E;
+            --accent-color: #D97706;
+        }
+
         body {
-        background: #FFFACD;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
+            background: var(--primary-gradient);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         #top-left-button {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: inline-block;
         }
 
         #top-left-button:hover {
-            background-color: #0056b3;
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.3);
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            margin: 80px 20px 40px 20px; /* 顶部留出按钮空间 */
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(120, 53, 15, 0.1);
+            max-width: 800px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid rgba(217, 119, 6, 0.2);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p, li {
+            line-height: 1.8;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #B45309;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed rgba(180, 83, 9, 0.5);
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: #78350F;
+            background-color: rgba(253, 230, 138, 0.4);
+            border-bottom-style: solid;
+        }
+
+        @media (max-width: 600px) {
+            .content-card {
+                padding: 20px;
+                margin: 70px 10px 20px 10px;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <button id="top-left-button" onclick="goToUrl()">返回</button>
-    <br /><br />
-    <h2>版权声明</h2>
-    © 2025-2026 垚懿 又名 Yaoyi 版权所有，保留所有权利
-    <br /><br />
-    本网站所有内容（除特别说明外）均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank">知识共享署名-相同方式共享 4.0 国际许可协议 (CC BY-SA 4.0) </a> 进行许可，你可以自由分享并演绎我的作品，但必须给予适当位置的署名，如在开头显著位置注明作者 ZYY-Office 并附上原文链接，可以用于商业目的，且演绎作品也必须采用相同的许可协议。
-    <br /><br />
-    本网站展示的作品（除特别说明外）将在202？年？月左右采用 <a href="https://opensource.org/license/MIT" target="_blank">MIT 许可证</a> 开源，在那时候你可以自由使用，但必须给予适当位置的署名，如果你在项目中使用这些代码，希望你能在合适的位置注明作者 ZYY-Office 并附上原文链接，可以用于商业目的。但是在时间未到时禁止使用该作品的源代码！相关条款参见<a href="https://zyyos.io.hb.cn/document/" target="_blank">《Zyy Maple Leaf OS使用协议》</a>。
-    <br /><br />
-    本网站代码 <a href="https://github.com/ZyyOS/ZyyOS" target="_blank">已开源</a> 。
-    <br /><br />
-    <h2>特此声明</h2>
-    本作品与 <a href="https://zyos.mysxl.cn/" target="_blank">Zy OS</a> ，<a href="https://intereco.org.cn/d/116" target="_blank">LeafOS</a> ， <a href="https://zx-leafy.github.io/" target="_blank">ZXLeaf OS</a> ， <a href="https://www.mapleleafworldschool.com/" target="_blank">枫叶世界学校项目</a> 无任何关系，切勿混淆
-    <br />
-    本作品与 Scratch ， Scratch基金会 ， Scratch团队 无任何关联
-    <br /><br />
-    <h2>我的理念</h2>
-    <a href="https://io.hb.cn/about.html#%E6%88%91%E7%9A%84%E7%90%86%E5%BF%B5" target="_blank">
-    代码改变世界
-    <br />
-    Code changes the world
-    </a>
+    <button id="top-left-button" onclick="goToUrl()">← 返回</button>
+    <div class="content-card">
+        <h2>版权声明</h2>
+        <p>© 2025-2026 垚懿 又名 Yaoyi ，版权所有，保留所有权利</p>
+
+        <p>本网站所有内容（除特别说明外）均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank">知识共享署名-相同方式共享 4.0 国际许可协议 (CC BY-SA 4.0)</a> 进行许可。你可以自由分享并演绎我的作品，但必须给予适当位置的署名，如在开头显著位置注明作者 <strong>ZYY-Office</strong> 并附上原文链接。可以用于商业目的，且演绎作品也必须采用相同的许可协议。</p>
+
+        <p>本网站展示的作品（除特别说明外）将在 202？年？月左右采用 <a href="https://opensource.org/license/MIT" target="_blank">MIT 许可证</a> 开源。在那时候你可以自由使用，但必须给予适当位置的署名。如果你在项目中使用这些代码，希望你能在合适的位置注明作者 <strong>ZYY-Office</strong> 并附上原文链接，可以用于商业目的。但是在时间未到时禁止使用该作品的源代码！相关条款参见 <a href="https://zyyos.io.hb.cn/document/" target="_blank">《Zyy Maple Leaf OS使用协议》</a>。</p>
+
+        <p>本网站代码 <a href="https://github.com/ZyyOS/ZyyOS" target="_blank">已开源</a>。</p>
+
+        <h2>特此声明</h2>
+        <p>本作品与 <a href="https://zyos.mysxl.cn/" target="_blank">Zy OS</a>，<a href="https://intereco.org.cn/d/116" target="_blank">LeafOS</a>，<a href="https://zx-leafy.github.io/" target="_blank">ZXLeaf OS</a>，<a href="https://www.mapleleafworldschool.com/" target="_blank">枫叶世界学校项目</a> 无任何关系，切勿混淆。</p>
+        <p>本作品与 Scratch，Scratch基金会，Scratch团队 无任何关联。</p>
+
+        <h2>我的理念</h2>
+        <p><a href="https://undz.cn/about.html#%E6%88%91%E7%9A%84%E7%90%86%E5%BF%B5" target="_blank">代码改变世界 <br> Code changes the world</a></p>
+    </div>
+
     <script>
         function goToUrl() {
             window.history.back();
@@ -62,5 +152,3 @@
     </script>
 </body>
 </html>
-
-
