@@ -180,27 +180,42 @@
             box-shadow: 0 10px 30px rgba(217, 119, 6, 0.15);
         }
 
-        .btn {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 15px 40px;
-            background: linear-gradient(90deg, #F59E0B, #D97706);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
+    .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* 图标和文字间距 */
+    padding: 16px 45px;
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.2em;
+    letter-spacing: 0.5px;
 
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.5);
-        }
+    box-shadow: 0 6px 0 #B45309, 0 15px 30px rgba(217, 119, 6, 0.3);
+
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    position: relative;
+    top: 0;
+    border: none;
+    cursor: pointer;
+    }
+
+    .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 #B45309, 0 20px 40px rgba(217, 119, 6, 0.4);
+    background: linear-gradient(135deg, #FDBA74 0%, #F59E0B 100%);
+    color: #fff;
+    }
+
+    .btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #B45309, 0 0 0 rgba(0,0,0,0);
+    margin-top: 0; /* 防止布局跳动 */
+    }
 
         .media-container {
             flex: 1;
@@ -363,7 +378,9 @@
                 </ul>
                 <div class="download-card">
                     <p style="margin-bottom: 10px;"><strong>最新版本：</strong> v1.0 (26N14)</p>
-                    <a class="btn" id="downloadBtn" target="_blank">📥 立即下载体验</a>
+                    <a class="btn" href="./download/" id="downloadBtn" target="_self">
+                    📥 立即下载体验
+                    </a>
                 </div>
             </div>
             <div class="media-container">
