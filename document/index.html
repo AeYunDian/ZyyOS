@@ -5,156 +5,221 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta charset="UTF-8">
-    <title>Zyy Maple Leaf OS使用协议</title>
+    <title>使用协议 - Zyy Maple Leaf OS</title>
     <style>
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    body {
-        background: linear-gradient(to bottom, #FFFFE0);
-        background-attachment: fixed;
-        min-height: 100vh;
-        font-family: 'Noto Sans SC', sans-serif;
-        color: #333;
-        line-height: 1.8;
-        display: flex;
-        flex-direction: column;
-    }
+        :root {
+            --primary-gradient: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-main: #78350F;
+            --text-light: #92400E;
+            --accent-color: #D97706;
+            --card-shadow: 0 15px 35px rgba(120, 53, 15, 0.1);
+        }
 
-    .overlay {
-        background-color: rgba(255, 255, 255, 0.2);
-        padding: 20px;
-        flex: 1;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--primary-gradient);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         #top-left-button {
             position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 0, 0.9);
+            color: var(--text-main);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
         #top-left-button:hover {
-            background-color: #0056b3;
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.3);
         }
 
-    footer {
-        background-color: rgba(0, 0, 0, 0.8);
-        color: #fff;
-        padding: 40px 20px;
-        width: 100%;
-        box-sizing: border-box;
-        margin-top: auto;
-    }
-        .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 40px;
-    }
+        .agreement-container {
+            max-width: 900px;
+            margin: 80px auto 40px auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 1;
+        }
 
-        .footer-column h3 {
-        color: #fff;
-        font-size: 1.2em;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #ff9900;
-        padding-bottom: 5px;
-        display: inline-block;
-    }
-        .footer-column {
-        flex: 1;
-        min-width: 200px;
-    }
+        .agreement-container h2 {
+            color: var(--accent-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.7);
+        }
+
+        .agreement-container h3 {
+            color: var(--text-main);
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            background: rgba(217, 119, 6, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .agreement-container p,
+        .agreement-container li {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .agreement-container strong {
+            color: #92400E;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: var(--text-main);
+            padding: 30px 20px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
 
         .copyright {
-        margin-top: 40px;
-        text-align: center;
-        color: #666;
-        font-size: 0.9em;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .copyright a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+            color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
-    <button id="top-left-button" onclick="goToUrl()">返回</button>
+    <button id="top-left-button" onclick="goToUrl()">← 返回</button>
+    <div class="agreement-container">
+        <h2>📜 《Zyy Maple Leaf OS使用协议》</h2>
+
+        <p><strong>欢迎使用由ZYY-Office开发的Zyy Maple Leaf OS！</strong></p>
+
+        <p>在您开始使用本作品之前，请您务必<strong>仔细阅读并理解以下条款</strong>。本协议是您与ZYY-Office（以下简称“我们”）之间关于Zyy Maple Leaf OS（以下简称“本作品”）的使用协议。一旦您下载、安装或使用Zyy Maple Leaf OS，即表示您已充分理解并同意接受本协议所有条款的约束。如果您不同意本协议的任何内容，请勿使用本作品。</p>
+
+        <h3>一、作品性质与用途声明</h3>
+
+        <p><strong>1. 创意作品属性：</strong>Zyy Maple Leaf OS 是由 <strong>ZYY-Office</strong> 基于 <strong>02Engine</strong> 平台（Scratch 改版）开发的一款创意伪系统。本作品的名称、界面设计及模拟功能仅用于创意表达和娱乐目的，其表现形式并非指代任何真实的计算机操作系统。</p>
+
+        <p><strong>2. 开发初衷：</strong>本作品的开发初衷是出于对编程技术的热爱、学习与探索，旨在通过模拟操作系统界面和交互逻辑，为用户提供一种富有创意和趣味性的互动体验，帮助用户感受编程的魅力和计算机操作的基本原理。</p>
+
+        <p><strong>3. 使用限制：</strong>重要提示：本作品仅限于娱乐和教育目的使用。它不具有任何实际操作系统所具备的功能、性能、安全性及稳定性，不能用于替代任何真实的操作系统来满足您日常的计算机使用、数据处理或商业运营等需求。我们不对因将本作品误用为实际操作系统而产生的任何后果承担责任。</p>
+
+        <h3>二、知识产权与版权声明</h3>
+
+        <p><strong>1. 版权归属：</strong>Zyy Maple Leaf OS 是由 ZX34 和 ZYY-Office 共同创作的。本作品（包括但不限于修改后的代码、新增及修改后的界面设计、图标、文字、音效等所有元素）的知识产权及相关权益，除注明属于ZX34的部分外，均归 ZYY-Office 所有，并受<strong>《中华人民共和国著作权法》及其他相关法律法规及国际条约</strong>的保护。</p>
+
+        <p><strong>2. 许可范围：</strong>我们授予您一项个人的、非独家的、不可转让的、仅限于非商业用途的许可，允许您下载、安装并在您的设备上运行本作品，仅供您个人学习、研究和娱乐之用。</p>
+
+        <p><strong>3. 限制条款：</strong>未经 ZYY-Office 的事先书面明确授权，您不得复制、反编译或以其他方式试图获取本作品的源代码，基于本软件进行任何商业性的开发、运营或提供服务，侵犯我们或任何第三方（如ZX34）与本作品相关的任何知识产权。</p>
+
+        <p><strong>4. 商业授权：</strong>如果您希望将 Zyy Maple Leaf OS 用于商业目的，或进行深度的二次开发、定制化合作，请通过以下方式与我们联系，我们将根据具体情况评估并提供相应的授权，<strong>请联系QQ: 3918080979</strong> （添加时请务必标注来意）。</p>
+
+        <p><strong>5. 免责声明：</strong>该作品不存在涉及和侵犯他人著作权，部分功能已征得同意。</p>
+
+        <h3>三、隐私保护与数据安全</h3>
+
+        <p><strong>1. 数据收集与使用：</strong>为了提供特定的功能（如天气信息查询功能），本软件在运行过程中会获取您设备的大致地理位置信息。我们承诺，该信息仅用于上述功能的正常运行，以增强您的使用体验。</p>
+
+        <p><strong>2. 隐私承诺：</strong>我们非常尊重并致力于保护您的个人隐私。除上述明确说明的大致地理位置信息外，本软件不会收集、存储、使用或传输您的任何其他个人身份信息、敏感数据、通讯内容或其他隐私信息。</p>
+
+        <p><strong>3. 风险提示：</strong>鉴于本软件基于 <strong>02Engine</strong> 平台开发，且运行环境可能涉及复杂的网络状况，我们无法绝对保证在数据传输和处理过程中完全不存在任何泄露风险。因此，我们强烈建议您在使用本软件时，不要输入任何您认为敏感、机密或重要的个人信息。</p>
+
+        <p><strong>4. 用户选择：</strong>如果您不同意本软件获取大致地理位置信息，相关的功能可能无法正常使用。</p>
+
+        <h3>四、免责声明</h3>
+
+        <p><strong>1. 本软件及其中包含的所有功能均不带任何明示或默示的担保。</strong>我们不保证本软件能满足您的特定需求，也不保证本软件的运行不会中断、及时、安全或无错误。</p>
+
+        <p><strong>2. 无间接损害责任：</strong>在任何情况下，ZYY-Office 或其关联方均不对您因使用或无法使用本软件而产生的任何直接、间接、偶然、特殊或后果性的损害（包括但不限于数据丢失、利润损失、商誉损害或业务中断等）承担责任。</p>
+
+        <p><strong>3. 第三方内容：</strong>本软件可能包含指向第三方网站或资源的链接。我们不对这些第三方内容的准确性、合法性或安全性做任何保证，您访问这些内容的风险由您自行承担。</p>
+
+        <h3>五、协议的变更</h3>
+
+        <p>我们保留随时修改本协议的权利。我们可能会通过在相关平台发布公告或在作品内提示的方式通知您协议的变更。如果您在协议修改后继续使用本作品，即视为您已接受修改后的协议。如果您不同意修改后的协议，请停止使用本作品。</p>
+
+        <p style="text-align: center; margin-top: 40px; font-weight: bold; color: #92400E;">
+            最后更新日期：2026年3月11日 19：44
+        </p>
+    </div>
+
     <script>
         function goToUrl() {
             window.history.back();
         }
     </script>
-<br /><br />
-<h2><strong>《Zyy Maple Leaf OS使用协议》 </strong></h2>
-<br />
-<strong>欢迎使用由ZYY-Office开发的Zyy Maple Leaf OS！</strong>
-<br /><br />
-在您开始使用本作品之前，请您务必<strong>仔细阅读并理解以下条款</strong>。本协议是您与ZYY-Office（以下简称“我们”）之间关于Zyy Maple Leaf OS（以下简称“本作品”）的使用协议。一旦您下载、安装或使用Zyy Maple Leaf OS，即表示您已充分理解并同意接受本协议所有条款的约束。如果您不同意本协议的任何内容，请勿使用本作品。
-<br />
-<h3>一、作品性质与用途声明</h3>
-<br />
-<strong>1.创意作品属性：</strong>Zyy Maple Leaf OS 是由 <strong>ZYY-Office</strong> 基于 <strong>02Engine</strong> 平台（Scratch 改版）开发的一款创意伪系统。本作品的名称、界面设计及模拟功能仅用于创意表达和娱乐目的，其表现形式并非指代任何真实的计算机操作系统。
-<br />
-<strong>2.开发初衷：</strong>本作品的开发初衷是出于对编程技术的热爱、学习与探索，旨在通过模拟操作系统界面和交互逻辑，为用户提供一种富有创意和趣味性的互动体验，帮助用户感受编程的魅力和计算机操作的基本原理。
-<br />
-<strong>3.使用限制：</strong>重要提示：本作品仅限于娱乐和教育目的使用。它不具有任何实际操作系统所具备的功能、性能、安全性及稳定性，不能用于替代任何真实的操作系统来满足您日常的计算机使用、数据处理或商业运营等需求。我们不对因将本作品误用为实际操作系统而产生的任何后果承担责任。
-<br />
-<h3>二、知识产权与版权声明</h3>
-<br />
-<strong>1.版权归属：</strong>Zyy Maple Leaf OS 是由 ZX34 和 ZYY-Office 共同创作的。本作品（包括但不限于修改后的代码、新增及修改后的界面设计、图标、文字、音效等所有元素）的知识产权及相关权益，除注明属于ZX34的部分外，均归 ZYY-Office 所有，并受<strong>《中华人民共和国著作权法》及其他相关法律法规及国际条约</strong>的保护。
-<br />
-<strong>2.许可范围：</strong>我们授予您一项个人的、非独家的、不可转让的、仅限于非商业用途的许可，允许您下载、安装并在您的设备上运行本作品，仅供您个人学习、研究和娱乐之用。
-<br />
-<strong>3.限制条款：</strong>未经 ZYY-Office 的事先书面明确授权，您不得复制、反编译或以其他方式试图获取本作品的源代码，基于本软件进行任何商业性的开发、运营或提供服务，侵犯我们或任何第三方（如ZX34）与本作品相关的任何知识产权。
-<br />
-<strong>4.商业授权：</strong>如果您希望将 Zyy Maple Leaf OS 用于商业目的，或进行深度的二次开发、定制化合作，请通过以下方式与我们联系，我们将根据具体情况评估并提供相应的授权，<strong>请联系QQ: 3918080979</strong> （添加时请务必标注来意）。
-<br />
-<strong>5.免责声明：该作品不存在涉及和侵犯他人著作权，部分功能已征得同意。</strong>
-<br />
-<h3>三、隐私保护与数据安全</h3>
-<br />
-<strong>1.数据收集与使用：</strong>为了提供特定的功能（如天气信息查询功能），本软件在运行过程中会获取您设备的大致地理位置信息。我们承诺，该信息仅用于上述功能的正常运行，以增强您的使用体验。
-<br />
-<strong>2.隐私承诺：</strong>我们非常尊重并致力于保护您的个人隐私。除上述明确说明的大致地理位置信息外，本软件不会收集、存储、使用或传输您的任何其他个人身份信息、敏感数据、通讯内容或其他隐私信息。
-<br />
-<strong>3.风险提示：</strong>鉴于本软件基于 <strong>02Engine</strong> 平台开发，且运行环境可能涉及复杂的网络状况，我们无法绝对保证在数据传输和处理过程中完全不存在任何泄露风险。因此，我们强烈建议您在使用本软件时，不要输入任何您认为敏感、机密或重要的个人信息。
-<br />
-<strong>4.用户选择：</strong>如果您不同意本软件获取大致地理位置信息，相关的功能可能无法正常使用。
-<br />
-<h3>四、免责声明</h3>
-<strong>1.本软件及其中包含的所有功能均不带任何明示或默示的担保。</strong>我们不保证本软件能满足您的特定需求，也不保证本软件的运行不会中断、及时、安全或无错误。
-<br />
-<strong>2.无间接损害责任：</strong>在任何情况下，ZYY-Office 或其关联方均不对您因使用或无法使用本软件而产生的任何直接、间接、偶然、特殊或后果性的损害（包括但不限于数据丢失、利润损失、商誉损害或业务中断等）承担责任。
-<br />
-<strong>3.第三方内容：</strong>本软件可能包含指向第三方网站或资源的链接。我们不对这些第三方内容的准确性、合法性或安全性做任何保证，您访问这些内容的风险由您自行承担。
-<h3>五、协议的变更</h3>
-我们保留随时修改本协议的权利。我们可能会通过在相关平台发布公告或在作品内提示的方式通知您协议的变更。如果您在协议修改后继续使用本作品，即视为您已接受修改后的协议。如果您不同意修改后的协议，请停止使用本作品。
-<br /><br /><br />
-<strong>最后更新日期：2026年3月11日 19：44</strong>
-<footer>
+
+    <footer>
         <div class="footer-container">
             <div class="footer-column">
-                <h3>Zyy Maple Leaf OS</h3>
-                <p>一个真正可独立运行的 Scratch 操作系统，功能强大，UI精美</p>
+                <p>© 2026 ZYY-Office团队 | 基于 02Engine (Scratch) 开发</p>
+            </div>
+            <div class="copyright">
+                <a href="https://icp.gov.moe/?keyword=20263044" target="_blank">萌ICP备20263044号</a>
+                <a href="https://icp.gov.moe/?keyword=20260885" target="_blank">萌ICP备20260885号</a>
+                <br>
+                技术支持: <a href="https://undz.cn" target="_blank" style="color: #92400E;">Yund</a>
             </div>
         </div>
-        <div class="copyright">
-            <a href="https://icp.gov.moe/?keyword=20263044" target="_blank">萌ICP备20263044号</a>  <a href="https://icp.gov.moe/?keyword=20260885" target="_blank">萌ICP备20260885号</a>
-            <br />
-            <a href="https://space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a> | <a href="https://undz.cn" target="_blank" style="text-decoration: none;color: #666;">Yund 技术支持</a> | 基于 Scratch 项目 | 开源：暂不开源
-        </div>
-</footer>
+    </footer>
+
 </body>
-
 </html>
-
-
