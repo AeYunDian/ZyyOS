@@ -1,401 +1,556 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="/favicon.png" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyy Maple Leaf OS - 官方网站</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #D97706;
-            --primary-hover: #B45309;
-            --secondary-color: #F59E0B;
-            --text-primary: #F3F4F6;
-            --text-secondary: #78350F;
-            --bg-card: rgba(255, 255, 255, 0.55);
-            --border-color: rgba(255, 255, 255, 0.6);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --undz-accent: #6a11cb;
-            --text-light: #92400E;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
-            background-size: 400% 400%;
-            animation: gradientFlow 15s ease infinite;
-            min-height: 100vh;
-            font-family: 'Noto Sans SC', sans-serif;
-            color: #451a03;
-            line-height: 1.8;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .runtime-container {
-            text-align: center;
-            padding: 15px 0;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 20px;
-        }
-        .runtime-text {
-            color: #92400E;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        .runtime-numbers {
-            color: var(--undz-accent);
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            font-size: 1.2em;
-            text-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
-        }
-
-        .overlay {
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            flex: 1;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 60px;
-            padding: 60px 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            background: linear-gradient(to right, #B45309, #78350F);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 10px 0;
-            font-weight: 800;
-            letter-spacing: 10px; /* 打字机效果需要初始字母间距大 */
-            text-shadow: 0 4px 10px rgba(255, 255, 255, 0.4);
-            /* 应用打字动画 */
-            animation: typing 2s steps(10) 0.5s normal both,
-                       blinkCursor 0.7s step-end infinite alternate;
-        }
-
-        .logo {
-            width: 228px;
-            height: 160px;
-            border-radius: 16px;
-            transition: var(--transition);
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
-        }
-        .logo:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.5);
-            animation: pulse 1.5s infinite;
-        }
-
-        .features li, .download-card {
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 更活泼的缓动函数 */
-        }
-        .features li:hover, .download-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            border-color: var(--undz-accent);
-        }
-
-        .content {
-            flex: 1;
-            max-width: 550px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .tagline {
-            font-size: 1.2em;
-            color: #92400E;
-            margin-bottom: 30px;
-            font-weight: 500;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.6);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
-        }
-
-        .features {
-            list-style: none;
-            margin: 30px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .features li {
-            background: var(--bg-card);
-            margin: 0;
-            padding: 24px;
-            border-radius: 12px;
-            border-left: 4px solid #F59E0B;
-            text-align: left;
-            font-weight: 500;
-            color: #78350F;
-            backdrop-filter: blur(12px);
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 6px rgba(120, 53, 15, 0.05);
-        }
-
-        .download-card {
-            background: rgba(255, 255, 255, 0.4);
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
-            margin-top: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.15);
-        }
-
+  <link rel="icon" href="/favicon.png" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zyy Maple Leaf OS - 官方网站</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #D97706;
+      --primary-hover: #B45309;
+      --secondary-color: #F59E0B;
+      --text-primary: #F3F4F6;
+      --text-secondary: #78350F;
+      --bg-card: rgba(255, 255, 255, 0.55);
+      --border-color: rgba(255, 255, 255, 0.6);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --undz-accent: #6a11cb;
+      --text-light: #92400E;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      min-height: 100vh;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: #451a03;
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-btn {
+      color: #FEF3C7;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+    .nav-btn:active {
+      transform: translateY(1px);
+    }
+    .runtime-container {
+      text-align: center;
+      padding: 15px 0;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 20px;
+    }
+    .runtime-text {
+      color: #92400E;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .runtime-numbers {
+      color: var(--undz-accent);
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 1.2em;
+      text-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
+    }
+    .overlay {
+      backdrop-filter: blur(20px);
+      padding: 20px;
+      flex: 1;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 100px 20px 60px;
+    }
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    h1 {
+      font-size: 3.5em;
+      background: linear-gradient(to right, #B45309, #78350F);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 10px 0;
+      font-weight: 800;
+      letter-spacing: 10px;
+      text-shadow: 0 4px 10px rgba(255, 255, 255, 0.4);
+    }
+    .logo {
+      width: 228px;
+      height: 160px;
+      border-radius: 16px;
+      transition: var(--transition);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
+    }
+    .logo:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 20px 40px rgba(251, 191, 36, 0.5);
+      animation: pulse 1.5s infinite;
+    }
+    .features li, .download-card {
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .features li:hover, .download-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      border-color: var(--undz-accent);
+    }
+    .content {
+      flex: 1;
+      max-width: 550px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .tagline {
+      font-size: 1.2em;
+      color: #92400E;
+      margin-bottom: 30px;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    }
+    .features {
+      list-style: none;
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .features li {
+      background: var(--bg-card);
+      margin: 0;
+      padding: 24px;
+      border-radius: 12px;
+      border-left: 4px solid #F59E0B;
+      text-align: left;
+      font-weight: 500;
+      color: #78350F;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 6px rgba(120, 53, 15, 0.05);
+    }
+    .download-card {
+      background: rgba(255, 255, 255, 0.4);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.15);
+    }
     .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* 图标和文字间距 */
-    padding: 16px 45px;
-    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1.2em;
-    letter-spacing: 0.5px;
-
-    box-shadow: 0 6px 0 #B45309, 0 15px 30px rgba(217, 119, 6, 0.3);
-
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-    position: relative;
-    top: 0;
-    border: none;
-    cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 45px;
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.2em;
+      letter-spacing: 0.5px;
+      box-shadow: 0 6px 0 #B45309, 0 15px 30px rgba(217, 119, 6, 0.3);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
+      cursor: pointer;
     }
-
     .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 9px 0 #B45309, 0 20px 40px rgba(217, 119, 6, 0.4);
-    background: linear-gradient(135deg, #FDBA74 0%, #F59E0B 100%);
-    color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 #B45309, 0 20px 40px rgba(217, 119, 6, 0.4);
+      background: linear-gradient(135deg, #FDBA74 0%, #F59E0B 100%);
     }
-
     .btn:active {
-    transform: translateY(6px);
-    box-shadow: 0 0 0 #B45309, 0 0 0 rgba(0,0,0,0);
-    margin-top: 0; /* 防止布局跳动 */
+      transform: translateY(6px);
+      box-shadow: 0 0 0 #B45309, 0 0 0 rgba(0,0,0,0);
     }
-
-        .media-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .image-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 8px solid rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(120, 53, 15, 0.2);
-            background: #000;
-            transition: var(--transition);
-        }
-
-        .image-container:hover {
-            transform: scale(1.03) rotate(1deg);
-            border-color: #FDE68A;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-
-        .video-wrapper {
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
-            position: relative;
-            border: 8px solid rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(120, 53, 15, 0.2);
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        footer {
-            background: rgba(69, 26, 3, 0.9);
-            color: #FDE68A;
-            padding: 40px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            margin-top: 20px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-column h3 {
-            color: #FEF3C7;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #F59E0B;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        .footer-column a {
-            color: #FCD34D;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: block;
-            margin: 10px 0;
-        }
-
-        .footer-column a:hover {
-            color: #fff;
-            transform: translateX(5px);
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100%; letter-spacing: -1px; }
-        }
-        @keyframes blinkCursor {
-            from, to { border-color: transparent }
-            50% { border-color: var(--undz-accent); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1.1); }
-            50% { transform: scale(1.15); opacity: 0.9; }
-            100% { transform: scale(1.1); }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                padding: 20px;
-                gap: 30px;
-            }
-            h1 {
-                font-size: 2.2em;
-                text-align: center;
-                letter-spacing: normal;
-            }
-            .logo:hover {
-                transform: scale(1.05);
-                animation: none;
-            }
-            .content {
-                align-items: center;
-                text-align: center;
-            }
-            .features li {
-                padding: 18px;
-            }
-            .image-container, .video-wrapper {
-                border-radius: 12px;
-                border-width: 4px;
-            }
-        }
-    </style>
+    .media-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 8px solid rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(120, 53, 15, 0.2);
+      background: #000;
+    }
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .video-wrapper {
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      position: relative;
+      border: 8px solid rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(120, 53, 15, 0.2);
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .directory-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+    .page-header h1 {
+      font-size: 3em;
+      background: linear-gradient(to right, #B45309, #78350F);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    .directory-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .directory-card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 15px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.15);
+      transition: var(--transition);
+      cursor: pointer;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    @keyframes slideInRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .directory-card:nth-child(1) { animation: slideInRight 0.5s ease-out 0.2s forwards; }
+    .directory-card:nth-child(2) { animation: slideInRight 0.5s ease-out 0.3s forwards; }
+    .directory-card:nth-child(3) { animation: slideInRight 0.5s ease-out 0.4s forwards; }
+    .directory-card:nth-child(4) { animation: slideInRight 0.5s ease-out 0.5s forwards; }
+    .directory-card:nth-child(5) { animation: slideInRight 0.5s ease-out 0.6s forwards; }
+    .directory-card:nth-child(6) { animation: slideInRight 0.5s ease-out 0.7s forwards; }
+    .directory-card:hover {
+      transform: translateX(5px) scale(1.01);
+      border-color: #6a11cb;
+      box-shadow: 0 10px 25px rgba(106, 17, 203, 0.2);
+    }
+    .card-icon {
+      font-size: 2em;
+      margin-right: 15px;
+      color: var(--primary-color);
+      min-width: 40px;
+      text-align: center;
+    }
+    .card-icon img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .directory-card h3 {
+      font-size: 1.3em;
+      color: #78350F;
+      margin-bottom: 5px;
+      font-weight: 700;
+      align-self: flex-start;
+    }
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .directory-card a {
+      color: #B45309;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.2s;
+    }
+    .directory-card a:hover {
+      background: rgba(180, 83, 9, 0.2);
+      color: #78350F;
+    }
+    footer {
+      background: rgba(69, 26, 3, 0.9);
+      color: #FDE68A;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      margin-top: 20px;
+      text-align: center;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+    .footer-column h3 {
+      color: #FEF3C7;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #F59E0B;
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+    .footer-column a {
+      color: #FCD34D;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: block;
+      margin: 10px 0;
+    }
+    .footer-column a:hover {
+      color: #fff;
+      transform: translateX(5px);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1.1); }
+      50% { transform: scale(1.15); opacity: 0.9; }
+      100% { transform: translateX(0); }
+    }
+    @media (max-width: 768px) {
+      .directory-section { padding: 0 10px; }
+      .page-header h1 { font-size: 2.2em; }
+      .card-links { justify-content: center; }
+      .directory-card { animation: none; opacity: 1; transform: none; }
+    }
+    /* --- 核心修复样式 (无注释) --- */
+    #directory-section {
+      scroll-margin-top: 80px;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
-    <div class="overlay">
-        <div class="container">
-            <div class="content">
-                <img src="./images/zyyos_icon.png" alt="ZyyOS图标" class="logo">
-                <p class="tagline">真正可独立运行的 Scratch 操作系统 </p>
-                <p class="tagline">革命性的操作系统体验</p>
-                <ul class="features">
-                    <li><img src="./images/pure_experience.png" alt="纯粹体验" width="20" height="20"><strong>纯粹体验</strong><br />去除冗余设计，还原最纯粹的操作系统交互逻辑</li>
-                    <li><img src="./images/rapid_response.png" alt="极速响应" width="20" height="20"><strong>极速响应</strong><br />该系统将Scratch编程体验提升到全新高度。无需Scratch宿主，独立运行，极致性能</li>
-                    <li><img src="./images/security_sandbox.png" alt="安全沙盒" width="20" height="20"><strong>安全沙盒</strong><br />创新的权限管理系统，每个应用在隔离环境中运行，保护核心系统安全，防止恶意代码破坏系统稳定性。</li>
-                    <li><img src="./images/multi-end_support.png" alt="多端支持" width="20" height="18"><strong>多端支持</strong> - 支持 x86 和 ARM 架构，可在 PC、树莓派、教育平板等多种设备上运行，满足不同场景需求。</li>
-                </ul>
-                <div class="download-card">
-                    <p style="margin-bottom: 10px;"><strong>最新版本：</strong> v1.0 (26N14)</p>
-                    <a class="btn" href="./download/" id="downloadBtn" target="_self">
-                    📥 立即下载体验
-                    </a>
-                </div>
-            </div>
-            <div class="media-container">
-                <h2>预览截图</h2>
-                <div class="image-container">
-                    <img src="./images/system-preview.png" alt="Zyy Maple Leaf OS 界面预览">
-                </div>
-                <h2>视频</h2>
-                <div class="video-wrapper">
-                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116068035069706&bvid=BV1BwZLBJETL&cid=36056989821&p=1" allowfullscreen="true">
-                    </iframe>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar">
+    <div class="nav-links">
+      <a href="/" class="nav-btn">首页</a>
+      <a href="#directory-section" class="nav-btn scroll-link">目录</a>
     </div>
+  </nav>
+  <div class="overlay">
+    <div class="container">
+      <div class="hero-section">
+        <div class="content">
+          <img src="./images/zyyos_icon.png" alt="ZyyOS图标" class="logo">
+          <p class="tagline">真正可独立运行的 Scratch 操作系统</p>
+          <p class="tagline">革命性的操作系统体验</p>
+          <ul class="features">
+            <li><img src="./images/pure_experience.png" alt="纯粹体验" width="20" height="20"><strong>纯粹体验</strong><br>去除冗余设计，还原最纯粹的操作系统交互逻辑</li>
+            <li><img src="./images/rapid_response.png" alt="极速响应" width="20" height="20"><strong>极速响应</strong><br>该系统将Scratch编程体验提升到全新高度。无需Scratch宿主，独立运行，极致性能</li>
+            <li><img src="./images/security_sandbox.png" alt="安全沙盒" width="20" height="20"><strong>安全沙盒</strong><br>创新的权限管理系统，每个应用在隔离环境中运行，保护核心系统安全，防止恶意代码破坏系统稳定性。</li>
+            <li><img src="./images/multi-end_support.png" alt="多端支持" width="20" height="18"><strong>多端支持</strong> - 支持 x86 和 ARM 架构，可在 PC、树莓派、教育平板等多种设备上运行，满足不同场景需求。</li>
+          </ul>
+          <div class="download-card">
+            <p style="margin-bottom: 10px;"><strong>最新版本：</strong> v1.0 (26N14)</p>
+            <a class="btn" href="./download/" id="downloadBtn" target="_self">📥 立即下载体验</a>
+          </div>
+        </div>
+        <div class="media-container">
+          <h2>预览截图</h2>
+          <div class="image-container">
+            <img src="./images/system-preview.png" alt="Zyy Maple Leaf OS 界面预览">
+          </div>
+          <h2>视频</h2>
+                    <div class="video-wrapper">
+                        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116068035069706&bvid=BV1BwZLBJETL&cid=36056989821&p=1" allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="directory-section" id="directory-section">
+                <div class="page-header">
+                    <h1>主站目录结构</h1>
+                    <p>该站点下的所有对应网址</p>
+                </div>
+                <div class="directory-grid">
+                    <!-- 卡片 1: 系统主站 -->
+                    <div class="directory-card">
+                        <div class="card-icon">
+                            <img src="./images/pure_experience.png" alt="ZyyOS图标">
+                        </div>
+                        <div class="card-content">
+                            <h3>系统主站 (首页)</h3>
+                            <div class="card-links">
+                                <a href="https://zyyos.undz.cn">zyyos.undz.cn</a>
+                                <a href="https://zyy.undz.cn">zyy.undz.cn</a>
+                                <a href="https://zyyos.io.hb.cn">zyyos.io.hb.cn</a>
+                                <a href="https://zyy.io.hb.cn">zyy.io.hb.cn</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 2: 系统下载页 -->
+                    <div class="directory-card">
+                        <div class="card-icon">⬇️</div>
+                        <div class="card-content">
+                            <h3>系统下载页</h3>
+                            <div class="card-links">
+                                <a href="./download/">主页+/download/</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 3: 系统文档页 -->
+                    <div class="directory-card">
+                        <div class="card-icon">📖</div>
+                        <div class="card-content">
+                            <h3>系统文档页</h3>
+                            <div class="card-links">
+                                <a href="./document/">主页+/document/</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 4: 关于项目页 -->
+                    <div class="directory-card">
+                        <div class="card-icon">ℹ️</div>
+                        <div class="card-content">
+                            <h3>关于项目页</h3>
+                            <div class="card-links">
+                                <a href="./about/">主页+/about/</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 5: 游戏页 -->
+                    <div class="directory-card">
+                        <div class="card-icon">🎮</div>
+                        <div class="card-content">
+                            <h3>游戏页</h3>
+                            <div class="card-links">
+                                <a href="./game/">主页+/game/</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 6: 3Dball游戏 -->
+                    <div class="directory-card">
+                        <div class="card-icon">🔴</div>
+                        <div class="card-content">
+                            <h3>3Dball游戏</h3>
+                            <div class="card-links">
+                                <a href="./game/3Dball/">主页+/game/3Dball/</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- --- 目录内容结束 --- -->
+        </div> <!-- .container 结束 -->
+    </div> <!-- .overlay 结束 -->
+
+    <!-- --- 页脚 --- -->
     <footer>
         <div class="footer-container">
             <div class="footer-column">
@@ -420,7 +575,7 @@
                     <li><a href="https://user.qzone.qq.com/3918080979">QQ</a></li>
                 </ul>
             </div>
-                            <div class="footer-column">
+            <div class="footer-column">
                 <h3>项目</h3>
                 <ul>
                     <li><a href="https://undz.cn/friends/" target="_blank">贡献指南</a></li>
@@ -430,35 +585,39 @@
                 </ul>
             </div>
         </div>
+
         <div class="copyright">
             <a href="https://icp.gov.moe/?keyword=20263044" target="_blank">萌ICP备20263044号</a>
             <a href="https://icp.gov.moe/?keyword=20260885" target="_blank">萌ICP备20260885号</a>
             <br />
-            <a href="https://space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a> | <a href="https://undz.cn" target="_blank" style="text-decoration: none;color: #666;">Yund 技术支持</a> | <a href="https://www.02engine.org/" target="_blank" style="text-decoration: none;color: #666;">基于 Scratch 项目</a> | <a href="./about/" target="_blank" style="text-decoration: none;color: #666;">开源：暂不开源</a>
+            <a href="https://space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a>
+            | <a href="https://undz.cn" target="_blank" style="text-decoration: none;color: #666;">Yund 技术支持</a>
+            | <a href="https://www.02engine.org/" target="_blank" style="text-decoration: none;color: #666;">基于 Scratch 项目</a>
+            | <a href="./about/" target="_blank" style="text-decoration: none;color: #666;">开源：暂不开源</a>
         </div>
+
         <div class="runtime-container">
-        <div class="runtime-text">距离建站日期2026-02-10 12:00:00，网站已稳定运行</div>
-        <div id="runtime" class="runtime-numbers">0 天 0 时 0 分 0 秒</div>
+            <div class="runtime-text">距离建站日期2026-02-10 12:00:00，网站已稳定运行</div>
+            <div id="runtime" class="runtime-numbers">0 天 0 时 0 分 0 秒</div>
         </div>
     </footer>
+
     <script>
-        const startDate = new Date("2026-02-10 12:00:00");
+    const startDate = new Date("2026-02-10 12:00:00");
+    function updateRuntime() {
+        const now = new Date();
+        const diff = now - startDate;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById("runtime").innerText = `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
+    }
+    setInterval(updateRuntime, 1000);
+    updateRuntime();
 
-        function updateRuntime() {
-            const now = new Date();
-            const diff = now - startDate;
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("runtime").innerText =
-                `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
-        }
-
-        setInterval(updateRuntime, 1000);
-        updateRuntime();
-    </script>
+    });
+</script>
 </body>
 </html>
