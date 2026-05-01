@@ -435,7 +435,7 @@
   <nav class="navbar">
     <div class="nav-links">
       <a href="/" class="nav-btn">首页</a>
-      <a href="#directory-section" class="nav-btn scroll-link">目录</a>
+      <a href="#directory" class="nav-btn scroll-link">目录</a>
     </div>
   </nav>
   <div class="overlay">
@@ -468,7 +468,7 @@
                 </div>
             </div>
 
-            <div class="directory-section" id="directory-section">
+            <div class="directory-section" id="directory">
                 <div class="page-header">
                     <h1>主站目录结构</h1>
                     <p>该站点下的所有对应网址</p>
@@ -538,7 +538,7 @@
                     <div class="directory-card">
                         <div class="card-icon">🔴</div>
                         <div class="card-content">
-                            <h3>3Dball游戏</h3>
+                            <h3>3Dball游戏（有Bug）</h3>
                             <div class="card-links">
                                 <a href="./game/3Dball/">主页+/game/3Dball/</a>
                             </div>
@@ -595,29 +595,6 @@
             | <a href="https://www.02engine.org/" target="_blank" style="text-decoration: none;color: #666;">基于 Scratch 项目</a>
             | <a href="./about/" target="_blank" style="text-decoration: none;color: #666;">开源：暂不开源</a>
         </div>
-
-        <div class="runtime-container">
-            <div class="runtime-text">距离建站日期2026-02-10 12:00:00，网站已稳定运行</div>
-            <div id="runtime" class="runtime-numbers">0 天 0 时 0 分 0 秒</div>
-        </div>
     </footer>
-
-    <script>
-    const startDate = new Date("2026-02-10 12:00:00");
-    function updateRuntime() {
-        const now = new Date();
-        const diff = now - startDate;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        document.getElementById("runtime").innerText = `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
-    }
-    setInterval(updateRuntime, 1000);
-    updateRuntime();
-
-
-    });
-</script>
 </body>
 </html>
