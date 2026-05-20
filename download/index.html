@@ -311,17 +311,44 @@
         </div>
         <ul class="download-list">
             <li>
-                <span class="version-info">v1.0 正式版 26N14（最新）</span>
+                <span class="version-info">v1.0 正式版 26N15（最新）</span>
+                <div class="actions">
+                    <button class="btn-base btn-disabled" disabled>作者正在准备</button>
+                    <button class="btn-base btn-disabled" disabled>作者正在准备</button><a class="btn-base btn-password" onclick="openModal()">需要安装密码</a>
+                </div>
+            </li>
+            <li>
+                <span class="version-info">v1.0 正式版 26N14</span>
                 <div class="actions">
                     <a href="https://pan.baidu.com/s/1XRdDhNx9Und84P0JdvvhbA?pwd=CV14" class="btn-base btn-download">下载</a>
-                    <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
+                    <a class="btn-base btn-password" onclick="openModal()">需要安装密码</a>
                 </div>
             </li>
             <li>
                 <span class="version-info">v1.0 正式版 26N13</span>
                 <div class="actions">
                     <a href="https://pan.baidu.com/s/1l9HeeAX5fZUTqFLwgleS4Q?pwd=CV13" class="btn-base btn-download">下载</a>
-                    <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
+                    <a class="btn-base btn-password" onclick="openModal()">需要安装密码</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="download-section">
+        <div class="section-header">
+            <img src="/images/html.png" alt="HTML" width="24" height="24">
+            <h2>HTML - 适用于任何操作系统</h2>
+        </div>
+        <ul class="download-list">
+            <li>
+                <span class="version-info">v1.0 正式版 26N15（最新）</span>
+                <div class="actions">
+                    <a href="https://pan.baidu.com/s/1pf1LALX3FNkofYmU8bVavA?pwd=CV15" class="btn-base btn-download">下载</a>
+                </div>
+            </li>
+            <li>
+                <span class="version-info">v1.0 正式版 26N14</span>
+                <div class="actions">
+                    <a href="https://pan.baidu.com/s/1oEkwU3JOG3MhlzAWFOvfwg?pwd=CV14" class="btn-base btn-download">下载</a>
                 </div>
             </li>
         </ul>
@@ -358,80 +385,13 @@
     </div>
     <div class="download-section">
         <div class="section-header">
-            <img src="/images/html.png" alt="HTML" width="24" height="24">
-            <h2>HTML - 适用于任何操作系统</h2>
+            <h2>🔒 获取安装密码</h2>
         </div>
         <ul class="download-list">
             <li>
-                <span class="version-info">v1.0 正式版 26N14（最新）</span>
-                <div class="actions">
-                    <a href="https://pan.baidu.com/s/1oEkwU3JOG3MhlzAWFOvfwg?pwd=CV14" class="btn-base btn-download">下载</a>
-                    <a class="btn-base btn-password" onclick="openModal()">获取安装密码</a>
-                </div>
+                <span class="version-info">Windows端安装程序有安装密码，请给 <a href="https://www.bilibili.com/video/BV1BwZLBJETL/" target="_blank" rel="noopener">这个哔哩哔哩视频</a> 三连，然后 <a href="https://space.bilibili.com/1056203124" target="_blank" rel="noopener">关注并私信作者</a> 获取最新版安装密码。</span>
             </li>
         </ul>
     </div>
-    <div class="download-section">
-        <div class="section-header">
-            <img src="/images/VMware_iso.png" alt="VMware" width="24" height="24">
-            <h2>VMware - iso 镜像文件</h2>
-        </div>
-        <ul class="download-list">
-            <li>
-                <span class="version-info">暂无开放下载链接</span>
-                <div class="actions">
-                    <button class="btn-base btn-disabled" disabled>不可用</button>
-                    <button class="btn-base btn-disabled" disabled>不可用</button>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="runtime-bar">
-        <div class="runtime-text">距离建站日期2026-02-10 14:00:00，网站已稳定运行</div>
-        <div id="runtime" class="runtime-numbers">0 天 0 时 0 分 0 秒</div>
-    </div>
-    <div id="passwordModal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>🔒 获取安装密码</h3>
-            <p>
-                这个安装程序有安装密码，请给 <a href="https://www.bilibili.com/video/BV1BwZLBJETL/" target="_blank" rel="noopener">这个哔哩哔哩视频</a> 三连，然后 <a href="https://space.bilibili.com/1056203124" target="_blank" rel="noopener">关注并私信作者</a> 获取安装密码。
-            </p>
-            <div class="modal-footer">
-                <a href="#" class="btn-base btn-download" onclick="closeModal(); return false;">确认并关闭</a>
-            </div>
-        </div>
-    </div>
-    <script>
-        const startDate = new Date("2026-02-10 14:00:00");
-
-        function updateRuntime() {
-            const now = new Date();
-            const diff = now - startDate;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("runtime").innerText =
-                `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
-        }
-
-        setInterval(updateRuntime, 1000);
-        updateRuntime();
-
-        var modal = document.getElementById("passwordModal");
-        function openModal() {
-            modal.style.display = "flex";
-        }
-        function closeModal() {
-            modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
 </body>
 </html>
