@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            /* 动态流沙背景 */
+            background: linear-gradient(-45deg, #ff9a56, #ff6a00, #ffd200, #ff8c00, #ffb347);
+            background-size: 400% 400%;
+            animation: sandFlow 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4a5568;
+            overflow: hidden;
+        }
+
+        @keyframes sandFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 106, 0, 0.2);
+            backdrop-filter: blur(10px);
+            max-width: 90%;
+            width: 450px;
+            animation: fadeIn 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -5px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #2d3748;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #718096;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 106, 0, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sand-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: float 20s infinite linear;
+        }
+
+        .particle-1 { width: 80px; height: 80px; top: 10%; left: 10%; animation-duration: 25s; }
+        .particle-2 { width: 60px; height: 60px; top: 60%; left: 80%; animation-duration: 30s; animation-delay: 2s; }
+        .particle-3 { width: 100px; height: 100px; top: 80%; left: 20%; animation-duration: 35s; animation-delay: 5s; }
+        .particle-4 { width: 50px; height: 50px; top: 30%; left: 70%; animation-duration: 28s; animation-delay: 3s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .error-code { font-size: 6rem; }
+            .container { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sand-particle particle-1"></div>
+    <div class="sand-particle particle-2"></div>
+    <div class="sand-particle particle-3"></div>
+    <div class="sand-particle particle-4"></div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <h2>哎呀，页面走丢了</h2>
+        <p>你访问的页面可能已经被移除，<br>或者链接地址输入有误。</p>
+        <a href="/" class="home-btn">返回首页</a>
+    </div>
+</body>
+</html>
