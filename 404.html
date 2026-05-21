@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - 页面未找到</title>
+    <title>404 - 页面未找到</title>->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #D97706;
+            --primary-hover: #B45309;
+            --secondary-color: #F59E0B;
+            --text-primary: #F3F4F6;
+            --text-secondary: #78350F;
+            --bg-card: rgba(255, 255, 255, 0.55);
+            --border-color: rgba(255, 255, 255, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --undz-accent: #6a11cb;
+            --text-light: #92400E;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,119 +26,254 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             /* 动态流沙背景 */
-            background: linear-gradient(-45deg, #ff9a56, #ff6a00, #ffd200, #ff8c00, #ffb347);
+            background: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
             background-size: 400% 400%;
-            animation: sandFlow 15s ease infinite;
-            height: 100vh;
+            animation: gradientFlow 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Noto Sans SC', sans-serif;
+            color: #451a03;
+            line-height: 1.8;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #4a5568;
-            overflow: hidden;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        @keyframes sandFlow {
+        @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(255, 106, 0, 0.2);
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            max-width: 90%;
-            width: 450px;
-            animation: fadeIn 0.8s ease-out;
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-btn {
+            color: #FEF3C7;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .overlay {
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            flex: 1;
             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px);
+            padding: 20px;
+        }
+
+        .error-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.15);
+            max-width: 500px;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .error-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: var(--undz-accent);
         }
 
         .error-code {
             font-size: 8rem;
             font-weight: 800;
-            line-height: 1;
-            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            background: linear-gradient(to right, #B45309, #78350F);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            letter-spacing: -5px;
+            background-clip: text;
+            line-height: 1;
+            margin: 0;
+            text-shadow: 0 4px 10px rgba(255, 255, 255, 0.4);
         }
 
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: #2d3748;
+        .error-message {
+            font-size: 1.5em;
+            color: #78350F;
+            margin: 20px 0;
+            font-weight: 700;
         }
 
-        p {
-            font-size: 1rem;
-            color: #718096;
-            margin-bottom: 2.5rem;
+        .error-desc {
+            color: #92400E;
+            font-size: 1em;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        .home-btn {
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            background: linear-gradient(45deg, #ff6a00, #ee0979);
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.2em;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 0 #B45309, 0 15px 30px rgba(217, 119, 6, 0.3);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            cursor: pointer;
         }
 
-        .home-btn:hover {
+        .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 106, 0, 0.6);
+            box-shadow: 0 9px 0 #B45309, 0 20px 40px rgba(217, 119, 6, 0.4);
+            background: linear-gradient(135deg, #FDBA74 0%, #F59E0B 100%);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #B45309, 0 0 0 rgba(0,0,0,0);
         }
 
-        .sand-particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            animation: float 20s infinite linear;
+        footer {
+            background: rgba(69, 26, 3, 0.9);
+            color: #FDE68A;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
+            text-align: center;
         }
 
-        .particle-1 { width: 80px; height: 80px; top: 10%; left: 10%; animation-duration: 25s; }
-        .particle-2 { width: 60px; height: 60px; top: 60%; left: 80%; animation-duration: 30s; animation-delay: 2s; }
-        .particle-3 { width: 100px; height: 100px; top: 80%; left: 20%; animation-duration: 35s; animation-delay: 5s; }
-        .particle-4 { width: 50px; height: 50px; top: 30%; left: 70%; animation-duration: 28s; animation-delay: 3s; }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
         }
 
-        @media (max-width: 480px) {
-            .error-code { font-size: 6rem; }
-            .container { padding: 2rem 1.5rem; }
+        .footer-column h3 {
+            color: #FEF3C7;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #F59E0B;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .footer-column a {
+            color: #FCD34D;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            .error-message {
+                font-size: 1.2em;
+            }
+            .container {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="sand-particle particle-1"></div>
-    <div class="sand-particle particle-2"></div>
-    <div class="sand-particle particle-3"></div>
-    <div class="sand-particle particle-4"></div>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" class="nav-btn">首页</a>
+            <a href="./" class="nav-btn">目录</a>
+        </div>
+    </nav>
 
-    <div class="container">
-        <div class="error-code">404</div>
-        <h2>哎呀，页面走丢了</h2>
-        <p>你访问的页面可能已经被移除，<br>或者链接地址输入有误。</p>
-        <a href="/" class="home-btn">返回首页</a>
+    <div class="overlay">
+        <div class="container">
+            <div class="error-card">
+                <h1 class="error-code">404</h1>
+                <div class="error-message">页面未找到</div>
+                <p class="error-desc">
+                    抱歉，你访问的页面不存在。<br>
+                    可能是因为链接地址输入有误，或者该页面已被移除。
+                </p>
+                <a href="/" class="btn">🏠 返回首页</a>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Zyy Maple Leaf OS</h3>
+                <p>一个真正可独立运行的 Scratch 操作系统</p>
+            </div>
+            <div class="footer-column">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="./">返回上一级</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>社区</h3>
+                <ul>
+                    <li><a href="https://github.com/ZyyOS" target="_blank">GitHub</a></li>
+                    <li><a href="https://space.bilibili.com/1056203124" target="_blank">哔哩哔哩</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <br />
+            <a href="https://space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a>
+        </div>
+    </footer>
 </body>
 </html>
