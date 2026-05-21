@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/images/zxos.svg" sizes="any">
+<meta name="viewport" content="width=device-width, initial-scale=Shift">
+<title>下载 ZX Leaf OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary-gradient: linear-gradient(-45deg, #ECFDF5, #D1FADF, #86EFAC, #10B981, #047857);
+--glass-bg: rgba(255, 255, 255, 0.65);
+--glass-border: rgba(255, 255, 255, 0.8);
+--text-main: #064E3B;
+--text-light: #065F46;
+--accent-color: #047857;
+--card-shadow: 0 15px 35px rgba(6, 80, 59, 0.1);
+--undz-accent: #6a11cb;
+--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+background: var(--primary-gradient);
+background-size: 400% 400%;
+animation: gradientFlow 15s ease infinite;
+font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+min-height: 100vh;
+padding: 20px;
+color: var(--text-main);
+}
+@keyframes gradientFlow {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+.runtime-bar {
+text-align: center;
+padding: 10px 0;
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(10px);
+border-radius: 8px;
+margin: 10px 0 20px 0;
+border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.runtime-text {
+color: #065F46;
+font-size: 0.85em;
+margin-bottom: 2px;
+font-weight: 500;
+}
+.runtime-numbers {
+color: var(--undz-accent);
+font-family: 'Roboto Mono', monospace;
+font-weight: bold;
+font-size: 1.1em;
+}
+.back-button {
+position: fixed;
+top: 20px;
+left: 20px;
+padding: 10px 20px;
+background: rgba(255, 255, 255, 0.9);
+color: var(--accent-color);
+border: 1px solid var(--accent-color);
+border-radius: 8px;
+text-decoration: none;
+font-weight: bold;
+font-size: 0.9em;
+transition: var(--transition);
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+backdrop-filter: blur(10px);
+z-index: 1000;
+}
+.back-button:hover {
+background: var(--accent-color);
+color: white;
+transform: translateY(-2px) scale(1.02);
+box-shadow: 0 8px 20px rgba(4, 120, 87, 0.3);
+}
+.page-title {
+text-align: center;
+width: 100%;
+margin: 60px 0 5px 0;
+color: var(--accent-color);
+font-weight: bold;
+font-size: 2.5em;
+text-shadow: 0 2px 4px rgba(255,255,255,0.7);
+}
+.page-subtitle {
+text-align: center;
+width: 100%;
+margin-bottom: 10px;
+color: var(--text-light);
+font-size: 1.1em;
+font-weight: 500;
+}
+.download-section {
+max-width: 900px;
+margin: 0 auto 40px auto;
+opacity: 0;
+transform: translateY(20px);
+animation: fadeInUp 0.6s ease-out forwards;
+}
+@keyframes fadeInUp {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.section-header {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 20px;
+color: var(--text-main);
+}
+.download-list {
+list-style-type: none;
+}
+.download-list li {
+background: var(--glass-bg);
+backdrop-filter: blur(15px);
+-webkit-backdrop-filter: blur(15px);
+border: 1px solid var(--glass-border);
+border-radius: 16px;
+padding: 20px;
+margin-bottom: 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: var(--card-shadow);
+transition: var(--transition);
+border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.download-list li:hover {
+transform: translateY(-5px) scale(1.01);
+box-shadow: 0 20px 40px rgba(6, 80, 59, 0.2);
+border-color: var(--undz-accent);
+z-index: 1;
+}
+.version-info {
+font-size: 1.1em;
+font-weight: 500;
+color: var(--text-main);
+}
+.actions {
+display: flex;
+gap: 10px;
+}
+.btn-base {
+padding: 10px 20px;
+border-radius: 8px;
+text-decoration: none;
+font-size: 0.95em;
+font-weight: bold;
+transition: var(--transition);
+border: 1px solid transparent;
+cursor: pointer;
+min-width: 80px;
+text-align: center;
+}
+.btn-download {
+background: linear-gradient(to bottom, #D1FADF, #10B981);
+color: #064E3B;
+border-color: #10B981;
+box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+}
+.btn-download:hover {
+background: linear-gradient(to bottom, #86EFAC, #047857);
+color: white;
+box-shadow: 0 8px 20px rgba(4, 120, 87, 0.4);
+transform: translateY(-2px);
+}
+.btn-password {
+background: rgba(255, 255, 255, 0.8);
+color: var(--text-light);
+border: 1px solid #10B981;
+}
+.btn-password:hover {
+background: white;
+color: var(--accent-color);
+transform: translateY(-2px);
+}
+.btn-disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+.btn-disabled:hover {
+transform: none;
+box-shadow: none;
+}
+.modal-overlay {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 1000;
+justify-content: center;
+align-items: center;
+backdrop-filter: blur(5px);
+}
+.modal-content {
+background: var(--glass-bg);
+backdrop-filter: blur(20px);
+padding: 30px;
+border-radius: 16px;
+width: 90%;
+max-width: 500px;
+border: 1px solid var(--glass-border);
+box-shadow: 0 20px 40px rgba(6, 80, 59, 0.15);
+position: relative;
+animation: fadeIn 0.4s ease-out;
+}
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: scale(0.9);
+}
+to {
+opacity: 1;
+transform: scale(1);
+}
+}
+.modal-content h3 {
+margin-top: 0;
+color: var(--accent-color);
+font-size: 1.5em;
+}
+.modal-content p {
+color: var(--text-main);
+line-height: 1.8;
+margin-bottom: 20px;
+}
+.modal-content a {
+color: #065F46;
+text-decoration: none;
+font-weight: bold;
+}
+.modal-content a:hover {
+text-decoration: underline;
+color: #064E3B;
+}
+.modal-footer {
+text-align: center;
+margin-top: 20px;
+}
+@media (max-width: 600px) {
+.page-title {
+font-size: 2em;
+}
+.actions {
+flex-direction: column;
+}
+.btn-base {
+width: 100%;
+}
+.download-list li {
+flex-direction: column;
+align-items: flex-start;
+gap: 15px;
+}
+.version-info {
+margin-bottom: 10px;
+}
+}
+</style>
+</head>
+<body>
+<a href="javascript:window.history.back()" class="back-button">← 返回</a>
+<h1 class="page-title">
+<img src="/images/zx.svg" alt="ZxOS图标" width="48" height="48">
+下载 ZX Leaf OS
+</h1>
+<p class="page-subtitle">选择适合您设备的版本进行安装</p>
+<div class="download-section">
+<div class="section-header">
+<img src="/images/html.png" alt="HTML" width="24" height="24">
+<h2>HTML - 适用于任何操作系统</h2>
+</div>
+<ul class="download-list">
+<li>
+<span class="version-info">v1.0 正式版 26N15（最新）</span>
+<div class="actions">
+<a href="https://developer3.lanrar.com/file/?UzUAPlxtBjcACQY+Cz4Ha1FuAztRdAtxCkIBVAA+BGAEcFRiXDMGfAZgVyFTNwI2UDpTYgR7AeZQ3QSiArtU+lPVALBciAbaAHgGKgs2B3ZRLQNgUWcLZQpoAVgANQRhBDlUMVw5BmcGYFc1UzICO1A9U2UEfQFlUCQEPwJtVGBTagBgXDUGZgBnBnYLYwd2UTYDNFE+CzsKOwEoAGwEMAQrVDNcNQZ9BmFXMFMyAjFQblNuBD8BZ1BkBGMCP1QwU2EANVxgBjQANQZjC20HYFE8A2NRbAs7CmwBYQBrBDcENVQwXDAGMQZ+V3tTbgJzUCxTIwQoAWZQJQRrAjpUaFNgAG5cNQZiAGYGZAtpByBRfwNvUWMLbAprAToAbQQyBDNUOlwyBmYGZFc0UzYCMlAkU3gEfQFlUDsEdQJjVGRTZABgXDgGYQBiBmMLawczUTsIFFE7C3kKegE6AG0EMgQzVDRcOQZlBmRXN1MwAjJQLFMjBDIBc1BqBDMCbFRnU30AZVw1BmIAeAZhC2YHNVElAzRRPQs9CiMBIQA4BGoEc1RtXF4GMQY7VzxTNwItUCxTIgQiAXNQMgRdAitUNFNuAGc=&toolsdown" class="btn-base btn-download">下载</a>
+</div>
+</li>
+</ul>
+</div>
+<div class="download-section">
+<div class="section-header">
+<h2>注意</h2>
+</div>
+<ul class="download-list">
+<li>
+<span class="version-info">请给 <a href="https://space.bilibili.com/1196118574" target="_blank" rel="noopener">zx34owo</a> 三连。</span>
+</li>
+</ul>
+</div>
+</body>
+</html>
