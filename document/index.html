@@ -47,10 +47,8 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            /* 修改点 1：使用 flex 并居中对齐子元素 */
             display: flex;
             justify-content: center;
-            /* 修改点 2：移除了原本的 space-between，现在不需要 nav-brand 了 */
             padding: 15px 40px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -187,13 +185,21 @@
 
     <nav class="navbar">
         <div class="nav-links">
-            <a href="/" class="nav-btn">首页</a>
-            <a href="/#directory" class="nav-btn">目录</a>
+            <a href="/" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.13em" height="1em" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1v16.2c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1c-1.4.1-2.8.1-4.2.1L416 512h-24c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2c-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.7h-32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24"></path></svg>
+                首页
+            </a>
+            <a href="/#directory" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32m32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16m16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16"></path></svg>
+                目录
+            </a>
         </div>
     </nav>
 
     <div class="agreement-container">
-        <h2>📜 《Zyy Maple Leaf OS使用协议》</h2>
+        <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32m32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16m16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16"></path></svg>
+            《Zyy Maple Leaf OS使用协议》</h2>
         <p><strong>欢迎使用由ZYY-Office开发的Zyy Maple Leaf OS！</strong></p>
         <p>在您开始使用本作品之前，请您务必<strong>仔细阅读并理解以下条款</strong>。本协议是您与ZYY-Office（以下简称“我们”）之间关于Zyy Maple Leaf OS（以下简称“本作品”）的使用协议。一旦您下载、安装或使用Zyy Maple Leaf OS，即表示您已充分理解并同意接受本协议所有条款的约束。如果您不同意本协议的任何内容，请勿使用本作品。</p>
 
