@@ -350,9 +350,10 @@
     .directory-card:nth-child(2) { animation: slideInRight 0.5s ease-out 0.3s forwards; }
     .directory-card:nth-child(3) { animation: slideInRight 0.5s ease-out 0.4s forwards; }
     .directory-card:nth-child(4) { animation: slideInRight 0.5s ease-out 0.5s forwards; }
-    .directory-card:nth-child(6) { animation: slideInRight 0.5s ease-out 0.6s forwards; }
+    .directory-card:nth-child(5) { animation: slideInRight 0.5s ease-out 0.6s forwards; }
     .directory-card:nth-child(7) { animation: slideInRight 0.5s ease-out 0.7s forwards; }
     .directory-card:nth-child(8) { animation: slideInRight 0.5s ease-out 0.8s forwards; }
+    .directory-card:nth-child(9) { animation: slideInRight 0.5s ease-out 0.9s forwards; }
     .directory-card:hover {
       transform: translateX(5px) scale(1.01);
       border-color: #6a11cb;
@@ -462,8 +463,14 @@
 <body>
   <nav class="navbar">
     <div class="nav-links">
-      <a href="/" class="nav-btn">首页</a>
-      <a href="/#directory" class="nav-btn scroll-link">目录</a>
+      <a href="/" class="nav-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.13em" height="1em" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1v16.2c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1c-1.4.1-2.8.1-4.2.1L416 512h-24c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2c-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.7h-32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24"></path></svg>
+          首页
+      </a>
+      <a href="/#directory" class="nav-btn scroll-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32m32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16m16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16"></path></svg>
+          目录
+      </a>
     </div>
   </nav>
   <div class="overlay">
@@ -531,7 +538,9 @@
 
                     <!-- 卡片 3: 系统文档页 -->
                     <div class="directory-card">
-                        <div class="card-icon">📖</div>
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32m32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16m16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16"></path></svg>
+                        </div>
                         <div class="card-content">
                             <h3>系统文档页</h3>
                             <div class="card-links">
@@ -542,11 +551,25 @@
 
                     <!-- 卡片 4: 关于项目页 -->
                     <div class="directory-card">
-                        <div class="card-icon">ℹ️</div>
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512a256 256 0 1 0 0 512m-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24m40-208a32 32 0 1 1 0 64a32 32 0 1 1 0-64"></path></svg>
+                        </div>
                         <div class="card-content">
                             <h3>关于项目页</h3>
                             <div class="card-links">
                                 <a href="./about/">主页+/about/</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="directory-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 640 512"><path fill="currentColor" d="m323.4 85.2l-96.8 78.4c-16.1 13-19.2 36.4-7 53.1c12.9 17.8 38 21.3 55.3 7.8l99.3-77.2c7-5.4 17-4.2 22.5 2.8s4.2 17-2.8 22.5L373 188.8l139 128V128h-.7l-3.9-2.5L434.8 79c-15.3-9.8-33.2-15-51.4-15c-21.8 0-43 7.5-60 21.2m22.8 124.4l-51.7 40.2c-31.5 24.6-77.2 18.2-100.8-14.2c-22.2-30.5-16.6-73.1 12.7-96.8l83.2-67.3c-11.6-4.9-24.1-7.4-36.8-7.4C234 64 215.7 69.6 200 80l-72 48v224h28.2l91.4 83.4c19.6 17.9 49.9 16.5 67.8-3.1c5.5-6.1 9.2-13.2 11.1-20.6l17 15.6c19.5 17.9 49.9 16.6 67.8-2.9c4.5-4.9 7.8-10.6 9.9-16.5c19.4 13 45.8 10.3 62.1-7.5c17.9-19.5 16.6-49.9-2.9-67.8zM16 128c-8.8 0-16 7.2-16 16v208c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V128zm32 192a16 16 0 1 1 0 32a16 16 0 1 1 0-32m496-192v224c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V144c0-8.8-7.2-16-16-16zm32 208a16 16 0 1 1 32 0a16 16 0 1 1-32 0"></path></svg>
+                        </div>
+                        <div class="card-content">
+                            <h3>贡献名单</h3>
+                            <div class="card-links">
+                                <a href="./contributors/">主页+/contributors/</a>
                             </div>
                         </div>
                     </div>
@@ -617,13 +640,13 @@
                     <li><a href="https://github.com/ZyyOS" target="_blank">GitHub</a></li>
                     <li><a href="https://space.bilibili.com/1056203124" target="_blank">哔哩哔哩</a></li>
                     <li><a href="https://space.bilibili.com/1056203124" target="_blank">讨论</a></li>
-                    <li><a href="https://user.qzone.qq.com/3918080979">QQ</a></li>
+                    <li><a href="https://api.undz.cn/addqq?uid=3918080979">QQ</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>项目</h3>
                 <ul>
-                    <li><a href="https://undz.cn/friends/" target="_blank">贡献指南</a></li>
+                    <li><a href="./Contributors/" target="_blank">贡献指南</a></li>
                     <li><a href="https://space.bilibili.com/1056203124" target="_blank">报告和请求</a></li>
                     <li><a href="./about/">关于项目</a></li>
                     <li><a href="https://space.bilibili.com/1056203124" target="_blank">团队</a></li>
