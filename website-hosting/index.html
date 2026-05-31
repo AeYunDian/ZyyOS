@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>额外托管资源 - Zyy Maple Leaf OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #D97706;
+            --primary-hover: #B45309;
+            --secondary-color: #F59E0B;
+            --text-primary: #F3F4F6;
+            --text-secondary: #78350F;
+            --bg-card: rgba(255, 255, 255, 0.55);
+            --border-color: rgba(255, 255, 255, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --undz-accent: #6a11cb;
+            --text-light: #92400E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #FEF3C7, #FDE68A, #FDBA74, #F59E0B, #D97706);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Noto Sans SC', sans-serif;
+            color: #451a03;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-btn {
+            color: #FEF3C7;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .overlay {
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            flex: 1;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 100px 20px 60px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            background: linear-gradient(to right, #B45309, #78350F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .directory-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .directory-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.15);
+            transition: var(--transition);
+            cursor: pointer;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .directory-card:nth-child(1) { animation: slideInRight 0.5s ease-out 0.2s forwards; }
+        .directory-card:nth-child(2) { animation: slideInRight 0.5s ease-out 0.3s forwards; }
+        .directory-card:nth-child(3) { animation: slideInRight 0.5s ease-out 0.4s forwards; }
+        .directory-card:nth-child(4) { animation: slideInRight 0.6s ease-out 0.5s forwards; }
+
+        .directory-card:hover {
+            transform: translateX(5px) scale(1.01);
+            border-color: #6a11cb;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2em;
+            margin-right: 15px;
+            color: var(--primary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .card-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .directory-card h3 {
+            font-size: 1.3em;
+            color: #78350F;
+            margin-bottom: 5px;
+            font-weight: 700;
+            align-self: flex-start;
+        }
+
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .directory-card a {
+            color: #B45309;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.2s;
+        }
+
+        .directory-card a:hover {
+            background: rgba(180, 83, 9, 0.2);
+            color: #78350F;
+        }
+
+        footer {
+            background: rgba(69, 26, 3, 0.9);
+            color: #FDE68A;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            color: #FEF3C7;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #F59E0B;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .footer-column a {
+            color: #FCD34D;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .directory-section {
+                padding: 0 10px;
+            }
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .card-links {
+                justify-content: center;
+            }
+            .directory-card {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.13em" height="1em" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1v16.2c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1c-1.4.1-2.8.1-4.2.1L416 512h-24c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2c-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.7h-32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24"></path></svg>
+                首页
+            </a>
+            <a href="/#directory" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32m16-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16m16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16"></path></svg>
+                目录
+            </a>
+        </div>
+    </nav>
+
+    <div class="overlay">
+        <div class="container">
+            <div class="page-header">
+                <h1>Zyy托管，更简单的个人静态网站托管</h1>
+            </div>
+
+            <div class="directory-grid">
+                <div class="directory-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"></path></svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>如果你也要托管你的个人静态网站</h3>
+                        <div class="card-links">
+                            <a href="/profile/">请联系作者</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="directory-card">
+                    <div class="card-icon">
+                        <a href="/zxos/">
+                            <img src="/images/zxos.svg" alt="ZXOS图标">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h3>下载ZX Leaf OS</h3>
+                        <div class="card-links">
+                            <a href="/zxos/">主页+./zxos/</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="directory-card">
+                    <div class="card-icon">
+                        <a href="/Windows7UI/">
+                            <img src="/Windows7UI/Windows7UI.png" alt="Windows7UI图标">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h3>Windows7UI-PPT下载</h3>
+                        <div class="card-links">
+                            <a href="/Windows7UI/">主页+./Windows7UI/</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="directory-card">
+                    <div class="card-icon">
+                        <a href="/ShangBackground/">
+                            <img src="//xxdz-official.github.io/ShangBackground/img/LOGO.png" alt="上一个背景图标">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h3>上一个桌面背景</h3>
+                        <div class="card-links">
+                            <a href="/ShangBackground/">主页+./ShangBackground/</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="copyright">
+            <br>
+            <a href="https://icp.gov.moe/?keyword=20263044" target="_blank">萌ICP备20263044号</a>
+            <a href="https://icp.gov.moe/?keyword=20260885" target="_blank">萌ICP备20260885号</a>
+            <br>
+            <a href="https://space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a>
+        </div>
+    </footer>
+</body>
+</html>
