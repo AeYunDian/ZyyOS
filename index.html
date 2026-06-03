@@ -454,6 +454,57 @@
     #directory-section {
       scroll-margin-top: 80px;
     }
+  #domain-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    background-color: #d32f2f;
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    font-family: 'Microsoft YaHei', sans-serif;
+  }
+  .error-text-t {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+  }
+   .modal-btn {
+    background-color: #ffffff;
+    color: #d32f2f;
+    border: none;
+    padding: 12px 35px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+
+  .modal-btn:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
+  .modal-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
     html {
       scroll-behavior: smooth;
     }
@@ -528,6 +579,7 @@
                                 <a href="//z.net2.eu.cc">z.net2.eu.cc</a>
                                 <a href="//zyy2.eu.cc">zyy2.eu.cc</a>
                             </div>
+                            <p>您当前访问的域名是：<span class="show-hostname"></span></p>
                         </div>
                     </div>
 
@@ -647,14 +699,49 @@
         </div>
 
         <div class="copyright">
-            <a href="//icp.gov.moe/?keyword=20263044" target="_blank">萌ICP备20263044号</a>
             <a href="//icp.gov.moe/?keyword=20260885" target="_blank">萌ICP备20260885号</a>
+            <p>您当前访问的域名是：<span class="show-hostname"></span></p>
             <br />
-            <a href="//space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">© 2026 ZYY-Office团队</a>
+            <a href="//space.bilibili.com/1056203124" target="_blank" style="text-decoration: none;color: #666;">&copy;2026 ZYY-Office团队</a>
             | <a href="//undz.cn" target="_blank" style="text-decoration: none;color: #666;">Yund 技术支持</a>
             | <a href="//www.02engine.org/" target="_blank" style="text-decoration: none;color: #666;">基于 Scratch 项目</a>
             | <a href="./about/" target="_blank" style="text-decoration: none;color: #666;">开源：暂不开源</a>
         </div>
     </footer>
+<script>
+  var hostname = window.location.hostname;
+  var elements = document.querySelectorAll('.show-hostname');
+  elements.forEach(function(element) {
+      element.textContent = hostname;
+  });
+</script>
+<div id="domain-modal">
+  <div class="modal-content">
+    <h2 class="error-text">该域名不受支持！</h2>
+    <p>虽然允许访问，但是该域名将不会续费！</p>
+    <button class="modal-btn" onclick="closeModal()">确定</button>
+  </div>
+</div>
+
+<script>
+(function checkDomain() {
+  const blockedDomains = [
+    "localhost",
+    "zyyos.exm2.eu.cc",
+    "z.ayd2.eu.cc",
+    "z.net2.eu.cc",
+    "zyy2.eu.cc"
+  ];
+  const currentHost = window.location.hostname;
+  const isBlocked = blockedDomains.some(domain => currentHost.includes(domain));
+  if (isBlocked) {
+    document.getElementById("domain-modal").style.display = "flex";
+  }
+})();
+function closeModal() {
+  document.getElementById("domain-modal").style.display = "none";
+}
+</script>
+
 </body>
 </html>
